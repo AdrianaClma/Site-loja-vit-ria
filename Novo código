@@ -1,1 +1,295 @@
 
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lojinha de Produtos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Dancing Script', cursive;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: linear-gradient(45deg, #c8a9cc, #e3b8d7);
+            padding: 20px;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(90deg, #c8a9cc, #e3b8d7);
+            padding: 40px;
+            color: white;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .banner .logo {
+            max-width: 150px;
+        }
+
+        .banner .texto {
+            font-size: 2em;
+        }
+
+        .produtos {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        .produto {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 220px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .produto img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .produto h3 {
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: #5f4b8b;
+        }
+
+        .produto p {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .quantidade {
+            margin: 10px 0;
+        }
+
+        .adicionar-carrinho {
+            background-color: #d4a5a5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .adicionar-carrinho:hover {
+            background-color: #ffb6b9;
+        }
+
+        .pagamento {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 30px auto;
+            width: 300px;
+        }
+
+        .pagamento h4 {
+            margin-bottom: 15px;
+            color: #5f4b8b;
+        }
+
+        .pagamento button {
+            background-color: #ffb6b9;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .pagamento button:hover {
+            background-color: #d4a5a5;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .carrinho {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            width: 70%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .carrinho h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #5f4b8b;
+        }
+
+        .carrinho ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .carrinho ul li {
+            margin: 10px 0;
+            font-size: 1.1em;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .carrinho ul li span {
+            font-weight: bold;
+        }
+
+        .carrinho button {
+            background-color: #ffb6b9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <img src="logo.png" alt="Logo" class="logo">
+        <div class="texto">Bem-vindo à nossa Loja!</div>
+    </div>
+
+    <div class="produtos">
+        <div class="produto">
+            <img src="produto1.jpg" alt="Produto 1">
+            <h3>Produto 1</h3>
+            <p>Descrição do produto 1</p>
+            <div class="quantidade">
+                Quantidade: <input type="number" id="quantidade1" value="1" min="1">
+            </div>
+            <button class="adicionar-carrinho" onclick="adicionarCarrinho('Produto 1', 10.99, document.getElementById('quantidade1').value)">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="produto">
+            <img src="produto2.jpg" alt="Produto 2">
+            <h3>Produto 2</h3>
+            <p>Descrição do produto 2</p>
+            <div class="quantidade">
+                Quantidade: <input type="number" id="quantidade2" value="1" min="1">
+            </div>
+            <button class="adicionar-carrinho" onclick="adicionarCarrinho('Produto 2', 12.99, document.getElementById('quantidade2').value)">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+
+    <div class="carrinho">
+        <h3>Carrinho</h3>
+        <ul id="itens-carrinho">
+            <!-- Produtos serão listados aqui -->
+        </ul>
+        <button onclick="finalizarCompra()">Finalizar Compra</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Lojinha de Produtos. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        let carrinho = [];
+
+        function adicionarCarrinho(nome, preco, quantidade) {
+            // Verifica se o produto já está no carrinho
+            let produtoExistente = carrinho.find(item => item.nome === nome);
+            
+            if (produtoExistente) {
+                // Atualiza a quantidade do produto
+                produtoExistente.quantidade += parseInt(quantidade);
+            } else {
+                // Adiciona um novo produto ao carrinho
+                carrinho.push({ nome, preco, quantidade: parseInt(quantidade) });
+            }
+            
+            // Atualiza o carrinho na tela
+            atualizarCarrinho();
+        }
+
+        function atualizarCarrinho() {
+            const listaCarrinho = document.getElementById('itens-carrinho');
+            listaCarrinho.innerHTML = ''; // Limpa a lista antes de atualizá-la
+
+            carrinho.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade} = R$ ${(item.preco * item.quantidade).toFixed(2)}`;
+                listaCarrinho.appendChild(li);
+            });
+        }
+
+        function finalizarCompra() {
+            if (carrinho.length === 0) {
+                alert("Seu carrinho está vazio!");
+            } else {
+                let total = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
+                alert(`Total: R$ ${total.toFixed(2)}\nCompra finalizada!`);
+                // Limpa o carrinho após finalizar a compra
+                carrinho = [];
+                atualizarCarrinho();
+            }
+        }
+    </script>
+</body>
+
+</html>

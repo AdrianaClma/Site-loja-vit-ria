@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Online</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .banner {
+            background: linear-gradient(to right, #ff7eb9, #ff65a3);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product h3 {
+            font-family: 'Cursive', sans-serif;
+            color: #ff65a3;
+        }
+
+        .product p {
+            color: #555;
+        }
+
+        .product button {
+            background-color: #ff65a3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .product button:hover {
+            background-color: #ff4d8c;
+        }
+
+        .cart {
+            margin-top: 30px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .cart h2 {
+            color: #ff65a3;
+        }
+
+        .footer {
+            background-color: #ff7eb9;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="banner">
+        <div class="container">
+            <h1>Bem-vindo à nossa loja!</h1>
+            <p>Encontre os melhores produtos com um toque especial</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="my-4">Nossos Produtos</h2>
+
+        <div class="row">
+            <div class="col-md-4 product">
+                <img src="https://via.placeholder.com/200" alt="Produto 1">
+                <h3>Produto 1</h3>
+                <p>Descrição do produto 1.</p>
+                <button onclick="adicionarCarrinho('Produto 1')">Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="col-md-4 product">
+                <img src="https://via.placeholder.com/200" alt="Produto 2">
+                <h3>Produto 2</h3>
+                <p>Descrição do produto 2.</p>
+                <button onclick="adicionarCarrinho('Produto 2')">Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="col-md-4 product">
+                <img src="https://via.placeholder.com/200" alt="Produto 3">
+                <h3>Produto 3</h3>
+                <p>Descrição do produto 3.</p>
+                <button onclick="adicionarCarrinho('Produto 3')">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+
+        <div class="cart">
+            <h2>Carrinho de Compras</h2>
+            <ul id="carrinho">
+                <li>Nenhum item no carrinho</li>
+            </ul>
+            <a href="checkout.html" class="btn btn-primary">Ir para o Checkout</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Loja Online - Todos os direitos reservados</p>
+    </div>
+
+    <script>
+        let carrinho = [];
+
+        function adicionarCarrinho(produto) {
+            carrinho.push(produto);
+            atualizarCarrinho();
+        }
+
+        function atualizarCarrinho() {
+            let listaCarrinho = document.getElementById('carrinho');
+            listaCarrinho.innerHTML = '';
+            if (carrinho.length === 0) {
+                listaCarrinho.innerHTML = '<li>Nenhum item no carrinho</li>';
+            } else {
+                carrinho.forEach(item => {
+                    let li = document.createElement('li');
+                    li.textContent = item;
+                    listaCarrinho.appendChild(li);
+                });
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

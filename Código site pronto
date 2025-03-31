@@ -15,37 +15,50 @@
 
         /* Corpo da página */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Dancing Script', cursive; /* Fonte cursiva e feminina */
             line-height: 1.6;
             background-color: #f4f4f4;
         }
 
         /* Cabeçalho */
         header {
-            background-color: #ff6f61;
-            padding: 10px;
+            background: linear-gradient(45deg, #ffb6b9, #d4a5a5);
+            padding: 20px;
             text-align: center;
         }
 
         header nav ul {
             list-style: none;
+            padding: 0;
         }
 
         header nav ul li {
             display: inline;
-            margin: 0 10px;
+            margin: 0 15px;
         }
 
         header nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(90deg, #ffb6b9, #f4c2c2);
+            padding: 40px;
+            text-align: center;
+            color: white;
+            font-size: 2em;
+            margin-bottom: 30px;
         }
 
         /* Produtos */
         .produtos {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             margin: 20px;
         }
 
@@ -53,9 +66,11 @@
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 250px;
+            width: 220px;
             padding: 15px;
             text-align: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
         }
 
         .produto img {
@@ -67,6 +82,7 @@
         .produto h3 {
             margin: 10px 0;
             font-size: 1.2em;
+            color: #5f4b8b;
         }
 
         .produto p {
@@ -76,16 +92,46 @@
         }
 
         .adicionar-carrinho {
-            background-color: #ff6f61;
+            background-color: #d4a5a5;
             color: white;
             border: none;
             padding: 10px 15px;
             cursor: pointer;
             border-radius: 5px;
+            transition: background-color 0.3s;
         }
 
         .adicionar-carrinho:hover {
-            background-color: #e65c50;
+            background-color: #ffb6b9;
+        }
+
+        /* Meio de pagamento */
+        .pagamento {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 30px auto;
+            width: 300px;
+        }
+
+        .pagamento h4 {
+            margin-bottom: 15px;
+            color: #5f4b8b;
+        }
+
+        .pagamento button {
+            background-color: #ffb6b9;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .pagamento button:hover {
+            background-color: #d4a5a5;
         }
 
         /* Rodapé */
@@ -113,6 +159,11 @@
         </nav>
     </header>
 
+    <!-- Banner -->
+    <section class="banner">
+        <p>Bem-vindo à nossa loja encantadora!</p>
+    </section>
+
     <main>
         <section class="produtos">
             <div class="produto">
@@ -127,12 +178,37 @@
                 <p>Descrição do produto 2.</p>
                 <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
             </div>
-            <!-- Adicione mais produtos aqui -->
+            <div class="produto">
+                <img src="produto3.jpg" alt="Produto 3">
+                <h3>Produto 3</h3>
+                <p>Descrição do produto 3.</p>
+                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
+            </div>
+            <div class="produto">
+                <img src="produto4.jpg" alt="Produto 4">
+                <h3>Produto 4</h3>
+                <p>Descrição do produto 4.</p>
+                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
+            </div>
+            <div class="produto">
+                <img src="produto5.jpg" alt="Produto 5">
+                <h3>Produto 5</h3>
+                <p>Descrição do produto 5.</p>
+                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
+            </div>
+        </section>
+
+        <!-- Meio de Pagamento -->
+        <section class="pagamento">
+            <h4>Escolha seu meio de pagamento:</h4>
+            <button>Cartão de Crédito</button>
+            <button>PIX</button>
+            <button>Boleto Bancário</button>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Lojinha de Produtos</p>
+        <p>&copy; 2025 Lojinha de Produtos | Todos os direitos reservados.</p>
     </footer>
 
     <script>

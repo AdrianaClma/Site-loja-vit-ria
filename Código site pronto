@@ -5,24 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lojinha de Produtos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <style>
-        /* Resetando algumas propriedades padrão */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Corpo da página */
         body {
-            font-family: 'Dancing Script', cursive; /* Fonte cursiva e feminina */
+            font-family: 'Dancing Script', cursive;
             line-height: 1.6;
             background-color: #f4f4f4;
         }
 
-        /* Cabeçalho */
         header {
-            background: linear-gradient(45deg, #ffb6b9, #d4a5a5);
+            background: linear-gradient(45deg, #c8a9cc, #e3b8d7);
             padding: 20px;
             text-align: center;
         }
@@ -44,17 +42,25 @@
             font-size: 18px;
         }
 
-        /* Banner */
         .banner {
-            background: linear-gradient(90deg, #ffb6b9, #f4c2c2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(90deg, #c8a9cc, #e3b8d7);
             padding: 40px;
-            text-align: center;
             color: white;
             font-size: 2em;
             margin-bottom: 30px;
         }
 
-        /* Produtos */
+        .banner .logo {
+            max-width: 150px;
+        }
+
+        .banner .texto {
+            font-size: 2em;
+        }
+
         .produtos {
             display: flex;
             justify-content: space-around;
@@ -91,6 +97,10 @@
             margin-bottom: 15px;
         }
 
+        .quantidade {
+            margin: 10px 0;
+        }
+
         .adicionar-carrinho {
             background-color: #d4a5a5;
             color: white;
@@ -105,7 +115,6 @@
             background-color: #ffb6b9;
         }
 
-        /* Meio de pagamento */
         .pagamento {
             background-color: #fff;
             padding: 20px;
@@ -134,7 +143,6 @@
             background-color: #d4a5a5;
         }
 
-        /* Rodapé */
         footer {
             background-color: #333;
             color: white;
@@ -144,6 +152,73 @@
             width: 100%;
             bottom: 0;
         }
+
+        .carrinho {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            width: 70%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .carrinho ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .carrinho ul li {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .form-cadastro {
+            width: 300px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-cadastro input,
+        .form-cadastro textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-cadastro button {
+            background-color: #ffb6b9;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .payment-options {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .payment-option button {
+            background-color: #d4a5a5;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .payment-option button:hover {
+            background-color: #ffb6b9;
+        }
     </style>
 </head>
 
@@ -152,76 +227,64 @@
         <nav>
             <ul>
                 <li><a href="#">Início</a></li>
-                <li><a href="#">Produtos</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Contato</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="carrinho.html">Carrinho (<span id="carrinho-count">0</span>)</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Banner -->
     <section class="banner">
-        <p>Bem-vindo à nossa loja encantadora!</p>
+        <div class="logo">
+            <img src="logo.png" alt="Logo da Loja" width="150">
+        </div>
+        <div class="texto">
+            <p>Bem-vindo à nossa loja encantadora!</p>
+        </div>
     </section>
 
-    <main>
-        <section class="produtos">
-            <div class="produto">
-                <img src="produto1.jpg" alt="Produto 1">
-                <h3>Produto 1</h3>
-                <p>Descrição do produto 1.</p>
-                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
+    <section id="produtos" class="produtos">
+        <div class="produto">
+            <img src="produto1.jpg" alt="Produto 1">
+            <h3>Produto 1</h3>
+            <p>Descrição do produto 1.</p>
+            <div class="quantidade">
+                <input type="number" value="1" min="1" id="qtd-produto1">
             </div>
-            <div class="produto">
-                <img src="produto2.jpg" alt="Produto 2">
-                <h3>Produto 2</h3>
-                <p>Descrição do produto 2.</p>
-                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
+            <button class="adicionar-carrinho" data-produto="Produto 1">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="produto2.jpg" alt="Produto 2">
+            <h3>Produto 2</h3>
+            <p>Descrição do produto 2.</p>
+            <div class="quantidade">
+                <input type="number" value="1" min="1" id="qtd-produto2">
             </div>
-            <div class="produto">
-                <img src="produto3.jpg" alt="Produto 3">
-                <h3>Produto 3</h3>
-                <p>Descrição do produto 3.</p>
-                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
+            <button class="adicionar-carrinho" data-produto="Produto 2">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="produto3.jpg" alt="Produto 3">
+            <h3>Produto 3</h3>
+            <p>Descrição do produto 3.</p>
+            <div class="quantidade">
+                <input type="number" value="1" min="1" id="qtd-produto3">
             </div>
-            <div class="produto">
-                <img src="produto4.jpg" alt="Produto 4">
-                <h3>Produto 4</h3>
-                <p>Descrição do produto 4.</p>
-                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
-            </div>
-            <div class="produto">
-                <img src="produto5.jpg" alt="Produto 5">
-                <h3>Produto 5</h3>
-                <p>Descrição do produto 5.</p>
-                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
-            </div>
-        </section>
+            <button class="adicionar-carrinho" data-produto="Produto 3">Adicionar ao Carrinho</button>
+        </div>
+    </section>
 
-        <!-- Meio de Pagamento -->
-        <section class="pagamento">
-            <h4>Escolha seu meio de pagamento:</h4>
-            <button>Cartão de Crédito</button>
-            <button>PIX</button>
-            <button>Boleto Bancário</button>
-        </section>
-    </main>
+    <section id="contato" class="form-cadastro">
+        <h4>Cadastre-se para realizar a compra:</h4>
+        <form action="#">
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome"><br><br>
+            <label for="email">E-mail:</label><br>
+            <input type="email" id="email" name="email"><br><br>
+            <label for="endereco">Endereço:</label><br>
+            <textarea id="endereco" name="endereco"></textarea><br><br>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </section>
 
     <footer>
-        <p>&copy; 2025 Lojinha de Produtos | Todos os direitos reservados.</p>
-    </footer>
-
-    <script>
-        // Seleciona todos os botões de adicionar ao carrinho
-        const botaoCarrinho = document.querySelectorAll('.adicionar-carrinho');
-
-        // Função que será chamada quando o botão for clicado
-        botaoCarrinho.forEach(botao => {
-            botao.addEventListener('click', () => {
-                alert('Produto adicionado ao carrinho!');
-            });
-        });
-    </script>
-</body>
-
-</html>
+        <p>&copy; 2025 L

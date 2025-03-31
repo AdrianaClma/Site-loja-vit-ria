@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lojinha de Produtos</title>
+    <style>
+        /* Resetando algumas propriedades padrão */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Corpo da página */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #ff6f61;
+            padding: 10px;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style: none;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Produtos */
+        .produtos {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .produto {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .produto img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .produto h3 {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        .produto p {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .adicionar-carrinho {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .adicionar-carrinho:hover {
+            background-color: #e65c50;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="produtos">
+            <div class="produto">
+                <img src="produto1.jpg" alt="Produto 1">
+                <h3>Produto 1</h3>
+                <p>Descrição do produto 1.</p>
+                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
+            </div>
+            <div class="produto">
+                <img src="produto2.jpg" alt="Produto 2">
+                <h3>Produto 2</h3>
+                <p>Descrição do produto 2.</p>
+                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
+            </div>
+            <!-- Adicione mais produtos aqui -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Lojinha de Produtos</p>
+    </footer>
+
+    <script>
+        // Seleciona todos os botões de adicionar ao carrinho
+        const botaoCarrinho = document.querySelectorAll('.adicionar-carrinho');
+
+        // Função que será chamada quando o botão for clicado
+        botaoCarrinho.forEach(botao => {
+            botao.addEventListener('click', () => {
+                alert('Produto adicionado ao carrinho!');
+            });
+        });
+    </script>
+</body>
+
+</html>

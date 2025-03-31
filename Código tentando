@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lojinha Virtual</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        h1, h2, h3 {
+            color: #f5a6b4;
+        }
+
+        header {
+            background: #f5a6b4;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        nav {
+            text-align: center;
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #f5a6b4;
+            font-weight: bold;
+        }
+
+        /* Estilo do banner */
+        .banner {
+            background: linear-gradient(to right, #f5a6b4, #fad0c4);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .banner img {
+            max-width: 100px;
+            margin: 0 auto;
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 200px;
+            margin: 10px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .product-card button {
+            background-color: #f5a6b4;
+            border: none;
+            padding: 10px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .product-card button:hover {
+            background-color: #e497a1;
+        }
+
+        .cart {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .cart-items {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .cart-items li {
+            background-color: #fff;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .cart-total {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Estilo de finalização de compra */
+        .payment-options {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .payment-options button {
+            background-color: #f5a6b4;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .payment-options button:hover {
+            background-color: #e497a1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Lojinha Virtual</h1>
+    </header>
+
+    <!-- Navegação -->
+    <nav>
+        <a href="#home">Página Inicial</a>
+        <a href="#cart" onclick="showCart()">Carrinho</a>
+        <a href="#contact">Contato</a>
+    </nav>
+
+    <!-- Banner -->
+    <div class="banner" id="home">
+        <h2>Bem-vindos à nossa loja!</h2>
+        <p>Descubra produtos incríveis com descontos especiais</p>
+        <img src="https://via.placeholder.com/100" alt="Logo">
+    </div>
+
+    <!-- Produtos -->
+    <div class="product-container">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Produto 1">
+            <h3>Produto 1</h3>
+            <p>R$ 49,99</p>
+            <button onclick="addToCart('Produto 1', 49.99)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Produto 2">
+            <h3>Produto 2</h3>
+            <p>R$ 69,99</p>
+            <button onclick="addToCart('Produto 2', 69.99)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Produto 3">
+            <h3>Produto 3</h3>
+            <p>R$ 89,99</p>
+            <button onclick="addToCart('Produto 3', 89.99)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Produto 4">
+            <h3>Produto 4</h3>
+            <p>R$ 39,99</p>
+            <button onclick="addToCart('Produto 4', 39.99)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Produto 5">
+            <h3>Produto 5</h3>
+            <p>R$ 79,99</p>
+            <button onclick="addToCart('Produto 5', 79.99)">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+
+    <!-- Carrinho -->
+    <div id="cart" class="cart" style="display: none;">
+        <h2>Carrinho de Compras</h2>
+        <ul id="cart-items" class="cart-items"></ul>
+        <p class="cart-total" id="cart-total">Total: R$ 0,00</p>
+        <button onclick="goToPayment()">Finalizar Compra</button>
+    </div>
+
+    <!-- Página de pagamento -->
+    <div class="payment-options" id="payment-options" style="display: none;">
+        <h2>Escolha o Meio de Pagamento</h2>
+        <button onclick="completePurchase('Boleto')">Boleto</button>
+        <button onclick="completePurchase('Cartão')">Cartão de Crédito</button>
+        <button onclick="completePurchase('Pix')">Pix</button>
+    </div>
+
+    <script>
+        let cart = [];
+        
+        function addToCart(product, price) {
+            cart.push({ product, price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsContainer = document.getElementById("cart-items");
+            cartItemsContainer.innerHTML = "";
+            let total = 0;
+
+            cart.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = `${item.product} - R$ ${item.price.toFixed(2)}`;
+                cartItemsContainer.appendChild(li);
+                total += item.price;
+            });
+
+            document.getElementById("cart-total").textContent = `Total: R$ ${total.toFixed(2)}`;
+        }
+
+        function showCart() {
+            document.getElementById("cart").style.display = "block";
+            document.getElementById("payment-options").style.display = "none";
+        }
+
+        function goToPayment() {
+            document.getElementById("cart").style.display = "none";
+            document.getElementById("payment-options").style.display = "block";
+        }
+
+        function completePurchase(paymentMethod) {
+            alert(`Compra realizada com sucesso! Método de pagamento: ${paymentMethod}`);
+            cart = [];
+            updateCart();
+            document.getElementById("payment-options").style.display = "none";
+            alert("Compra finalizada. Aguarde o envio do seu produto!");
+        }
+    </script>
+
+</body>
+</html>

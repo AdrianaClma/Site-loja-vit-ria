@@ -1,1 +1,113 @@
+index.html:
 
+<!DOCTYPE html><html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lojinha</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { font-family: cursive; background: linear-gradient(to right, #f4c2c2, #a67b5b); }
+        .produto, .carrinho { border: 1px solid #ccc; padding: 20px; margin: 10px; }
+        .produto img { width: 150px; display: block; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #a67b5b; }
+        .banner { display: flex; align-items: center; justify-content: space-between; padding: 20px; }
+        .logo { width: 100px; }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1 class="text-white">Bem-vindos à Lojinha</h1>
+        <a href="carrinho.html" class="btn btn-light">Ir para o Carrinho</a>
+    </header><div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 produto">
+            <img src="produto1.jpg" alt="Produto 1">
+            <h3>Produto 1</h3>
+            <p>R$ 10,00</p>
+            <input type="number" id="quantidade1" value="1" min="1">
+            <button class="btn btn-primary" onclick="adicionarAoCarrinho('Produto 1', 10.00, document.getElementById('quantidade1').value)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="col-md-4 produto">
+            <img src="produto2.jpg" alt="Produto 2">
+            <h3>Produto 2</h3>
+            <p>R$ 20,00</p>
+            <input type="number" id="quantidade2" value="1" min="1">
+            <button class="btn btn-primary" onclick="adicionarAoCarrinho('Produto 2', 20.00, document.getElementById('quantidade2').value)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="col-md-4 produto">
+            <img src="produto3.jpg" alt="Produto 3">
+            <h3>Produto 3</h3>
+            <p>R$ 30,00</p>
+            <input type="number" id="quantidade3" value="1" min="1">
+            <button class="btn btn-primary" onclick="adicionarAoCarrinho('Produto 3', 30.00, document.getElementById('quantidade3').value)">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    function adicionarAoCarrinho(nome, preco, quantidade) {
+        let produtoExistente = carrinho.find(item => item.nome === nome);
+        if (produtoExistente) {
+            produtoExistente.quantidade += parseInt(quantidade);
+        } else {
+            carrinho.push({ nome, preco, quantidade: parseInt(quantidade) });
+        }
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+        alert("Produto adicionado ao carrinho!");
+    }
+</script>
+
+</body>
+</html>carrinho.html:
+
+<!DOCTYPE html><html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+</head>
+<body>
+    <h1>Seu Carrinho</h1>
+    <div id="carrinho"></div>
+    <a href="pagamento.html" class="btn btn-success">Escolher forma de pagamento</a>
+    <script>
+        let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+        let carrinhoDiv = document.getElementById("carrinho");
+        if (carrinho.length === 0) {
+            carrinhoDiv.innerHTML = "Seu carrinho está vazio.";
+        } else {
+            carrinho.forEach(item => {
+                let div = document.createElement("div");
+                div.innerHTML = `${item.nome} - R$${item.preco} x ${item.quantidade}`;
+                carrinhoDiv.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>pagamento.html:
+
+<!DOCTYPE html><html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+</head>
+<body>
+    <h1>Escolha o meio de pagamento</h1>
+    <form>
+        <label><input type="radio" name="pagamento" value="boleto"> Boleto</label><br>
+        <label><input type="radio" name="pagamento" value="cartao"> Cartão de Crédito</label><br>
+        <label><input type="radio" name="pagamento" value="pix"> Pix</label><br>
+        <button type="submit" class="btn btn-danger">Finalizar Compra</button>
+    </form>
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Compra finalizada! (Integração futura com meios de pagamento)");
+        });
+    </script>
+</body>
+</html>
